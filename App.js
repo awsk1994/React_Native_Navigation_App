@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { AppLoading } from 'expo';
+import { AppLoading } from 'expo-app-loading';
 // import * as Font from 'expo-font';
+import MealsNavigator from './navigation/MealsNavigator';
 
 // const fetchFonts = () => {
 //   return Font.loadAsync({
@@ -18,12 +19,7 @@ export default function App() {
   //   return <AppLoading startAsync={fetchFonts} onFinish={() => setFontLoaded(true)}/>
   // };
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <MealsNavigator/>
 }
 
 const styles = StyleSheet.create({

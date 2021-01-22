@@ -10,6 +10,7 @@ expo import expo-font
 expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 npm install --save react-navigation
 npm install --save react-navigation-stack
+expo install expo-app-loading
 ```
 
 2. In App.js, import AppLoading and Font from react-navigation library:
@@ -73,4 +74,39 @@ const styles = StyleSheet.create({
 
 export default __NAME__Screen;
 ```
+
+6. create navigation folder and create MealsNavigator.js
+```js
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+
+import CategoriesScreen from "../screens/CategoriesScreen";
+import CategoryMealScreen from "../screens/CategoryMealScreen";
+import MealDetailScreen from "../screens/MealDetailScreen";
+
+const MealsNavigator = createStackNavigator({
+  Categories: CategoriesScreen,
+  CategoryMeal: {
+    screen: CategoryMealScreen
+  },    // This is just a longer form (can apply other options)
+  MealDetail: MealDetailScreen
+});
+
+export default createAppContainer(MealsNavigator);
+```
+
+7. In App.js, modify the return to return MealsNavigator instead.
+
+```js
+import MealsNavigator from './navigation/MealsNavigator';
+...
+export default function App() {
+...
+  return <MealsNavigator/>;    // Change to return MealsNavigator
+}
+```
+
+8. Refresh to see the categories screen.
+
+<img src="./img/initialNavigator.png" height="300px"/>
 

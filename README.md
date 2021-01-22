@@ -5,6 +5,6 @@
 
 ```
 expo init <PROJECT NAME>
-
+expo import expo-font
 ```
 

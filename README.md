@@ -50,3 +50,27 @@ export default function App() {
 }
 ```
 
+5. Create screens folder and create *Screen.js, using sample template below
+```js
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const __NAME__Screen = props => {
+  return (
+    <View style={styles.screen}>
+      <Text>The __NAME__ Screen</Text>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
+
+export default __NAME__Screen;
+```
+

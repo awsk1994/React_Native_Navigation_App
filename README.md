@@ -110,3 +110,60 @@ export default function App() {
 
 <img src="./img/initialNavigator.png" height="300px"/>
 
+9. If you add a console.log(props) in CategoriesScreen.js, you will see this:
+```js
+Object {
+  "navigation": Object {
+    "actions": Object {
+      "dismiss": [Function dismiss],
+      "goBack": [Function goBack],
+      "navigate": [Function navigate],
+      "pop": [Function pop],
+      "popToTop": [Function popToTop],
+      "push": [Function push],
+      "replace": [Function replace],
+      "reset": [Function reset],
+      "setParams": [Function setParams],
+    },
+    "addListener": [Function addListener],
+    "dangerouslyGetParent": [Function anonymous],
+    "dismiss": [Function anonymous],
+    "dispatch": [Function anonymous],
+    "emit": [Function emit],
+    "getChildNavigation": [Function getChildNavigation],
+    "getParam": [Function anonymous],
+    "getScreenProps": [Function anonymous],
+    "goBack": [Function anonymous],
+    "isFirstRouteInParent": [Function isFirstRouteInParent],
+    "isFocused": [Function isFocused],
+    "navigate": [Function anonymous],
+    "pop": [Function anonymous],
+    "popToTop": [Function anonymous],
+    "push": [Function anonymous],
+    "replace": [Function anonymous],
+    "reset": [Function anonymous],
+    "router": undefined,
+    "setParams": [Function anonymous],
+    "state": Object {
+      "key": "id-1611374247692-0",
+      "routeName": "Categories",
+    },
+  },
+  "screenProps": undefined,
+}
+```
+ - In navigation, you see that we have many functions that we can use.
+
+10. Add button to move from categoryScreen to categorymealscreen:
+```js
+const CategoriesScreen = props => {
+  ...
+  <Button title="Go to Meals!" onPress={() => {
+    props.navigation.navigate({routeName: 'CategoryMeal'})  // routeName has to be defined in MealsNavigator.js
+  }}></Button>
+  ...
+}
+```
+
+<img src="./img/navigate_category.png" height="300px"/>
+<img src="./img/navigate_categorymeal.png" height="300px"/>

@@ -167,3 +167,6 @@ const CategoriesScreen = props => {
 
 <img src="./img/navigate_category.png" height="300px"/>
 <img src="./img/navigate_categorymeal.png" height="300px"/>
+
+11. 按照第10个步骤，在 “categorymeal” 再弄多一次。
+

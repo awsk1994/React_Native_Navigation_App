@@ -198,4 +198,71 @@ props.navigation.popToTop();
 props.navigation.replace('__SCREENNAME__');
 ```
 
+13. Outputting a Grid of Categories
+
+ - 首先，我们创建一个class叫Category（category.js)，侧有id, title, color。
+```js
+class Category{
+  constructor(id, title, color){
+    this.id = id;
+    this.title = title;
+    this.color = color;
+  }
+}
+
+export default Category;
+```
+
+ - 之后，我们定义一个categories数组常数。
+```js
+import Category from '../models/category';
+
+export const CATEGORIES = [
+  new Category('c1', 'Italian', '#f5428d'),
+  new Category('c2', 'Quick & Easy', '#f54242'),
+  new Category('c3', 'Hamburgers', '#f5a442'),
+  new Category('c4', 'German', '#f5d142'),
+  new Category('c5', 'Light & Lovely', '#368dff'),
+  new Category('c6', 'Exotic', '#41d95d'),
+  new Category('c7', 'Breakfast', '#9eecff'),
+  new Category('c8', 'Asian', '#b9ffb0'),
+  new Category('c9', 'French', '#ffc7ff'),
+  new Category('c10', 'Summer', '#47fced')
+];
+```
+
+ - 在CategoriesScreen.js，我们把原本的代码删掉，改用Flatlist来显示我们刚定义的categories数组常数。
+```js
+import { CATEGORIES } from '../data/dummy-data';
+
+const renderGridItem = (itemData) => {
+  return (
+    <View style={styles.gridItem}>
+      <Text>{itemData.item.title}</Text>
+    </View>
+  )
+}
+
+const CategoriesScreen = props => {
+  return (
+    <FlatList 
+      keyExtractor={(item, index) => item.id}
+      data={CATEGORIES} 
+      renderItem={renderGridItem} 
+      numColumns={2} />
+  )
+}
+
+const styles = StyleSheet.create({
+  ...
+  gridItem: {
+    flex: 1,
+    margin: 15,
+    height: 150
+  }
+})
+```
+
+ - 以下是结果：
+<img src="./img/grid_categoryScreen.png" height="300"/>
 

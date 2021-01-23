@@ -170,3 +170,32 @@ const CategoriesScreen = props => {
 
 11. 按照第10个步骤，在 “categorymeal” 再弄多一次。
 
+12. push, pop, replace
+
+**Push**
+
+ - props.navigate 还有其他的函数，其中一个是push。push和navigate有什么区别？你可以使用push把一个同样的screen加到stack中，但navigate就无法做到这点，使用navigate在同样的screen不会有任何效果。
+ - 什么时候会需要push同样的screen？假设你要设计一个Dropbox APP，一个文件夹里可能有其他文件夹，当我们在某一个文件夹里的时候，我们可以显示一个folderScreen，当我们要进入这个文件夹里的其他文件夹时，我们就需要push一个内容不同的同类folderScreen。
+ 
+```js
+props.navigation.push("CategoryMeal")
+```
+
+**Go Back (pop)**
+
+ - props.navigate有三种pop：\*.pop, \*.goBack()和 \*.popToTop()。pop()与goBack()的功能一样，唯一不同的是pop可以使用在其他的navigator，但goBack仅可用在stackNavigator。popToTop()会pop走所有的screen，直接回到第一个（最底层）的screen。
+
+```js
+props.navigation.pop();
+props.navigation.goBack();
+props.navigation.popToTop();
+```
+
+**Replace**
+
+ - 替代功能
+```js
+props.navigation.replace('__SCREENNAME__');
+```
+
+

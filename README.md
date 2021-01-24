@@ -266,3 +266,36 @@ const styles = StyleSheet.create({
  - 以下是结果：
 <img src="./img/grid_categoryScreen.png" height="300"/>
 
+14. 
+
+ - 我们的renderGridItem需要执行props.navigation.navigate函数，但是目前的renderGridItem无法使用到props，因此我们把renderGridItem搬移到CategoriesScreen里。此外，我们也在renderGridItem上添加一个TouchableOpacity，给他一个类似Button的功能。
+
+```js
+const CategoriesScreen = props => {
+  const renderGridItem = (itemData) => {
+    return (
+      <TouchableOpacity style={styles.gridItem} onPress={() => {
+        props.navigation.navigate({routeName: 'CategoryMeal'});
+      }}>
+        <View>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+}
+```
+
+ - 我们可以通过设定navigationOptions控制headerTitle和他的styles。
+```js
+CategoriesScreen.navigationOptions = {
+  headerTitle: 'Meal Categories',
+  headerStyle: {
+    backgroundColor: Platform.OS == 'android' ? Colors.primaryColor : 'white'
+  },
+  headerTintColor: Platform.OS == 'android' ? 'white' : Colors.primaryColor
+}
+```
+
+ - 结果：
+<img src="./img/navigation_options.png" height="300px"/>

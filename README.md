@@ -331,4 +331,38 @@ const selectedCategory = CATEGORIES.find(cat => cat.id == catId);
 <img src="./img/passing_catId.png" height="300px"/>
 
 
+16. 设置CategoryMealScreen的headerTitle
+ - 与CategoriesScreen不同，CategoryMealScreen的headerTitle是动态的（是按照CategoriesScreen传送的catId决定的），因此我们在navigationOptions里不可以使用一个常量的输入方式。幸好，我们可以传送一个函数，当中有navigationData。透过console.log debug navigationData，可以看到其有props.navigate的函数：
+```js
+// console.log(navigationData)
+Object {
+  "navigation": Object {
+    "actions": Object {
+      "dismiss": [Function dismiss],
+      "goBack": [Function goBack],
+      "navigate": [Function navigate],
+      "pop": [Function pop],
+      "popToTop": [Function popToTop],
+      "push": [Function push],
+      "replace": [Function replace],
+      "reset": [Function reset],
+      "setParams": [Function setParams],
+    }
+    ...
+}
+```
 
+ - 因此，使用navigationData.navigation.getParam('categoryId'）即可：
+```js
+CategoryMealScreen.navigationOptions = (navigationData) => {
+  const catId = navigationData.navigation.getParam('categoryId');
+  const selectedCategory = CATEGORIES.find(cat => cat.id == catId);
+  return {
+    headerTitle: selectedCategory.title,
+    headerStyle: {
+      backgroundColor: Platform.OS == 'android' ? Colors.primaryColor : 'white'
+    },
+    headerTintColor: Platform.OS == 'android' ? 'white' : Colors.primaryColor
+  }
+};
+```

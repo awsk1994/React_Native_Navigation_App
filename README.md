@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
  - 以下是结果：
 <img src="./img/grid_categoryScreen.png" height="300"/>
 
-14. 
+14. 添加TouchableOpacity及设置navigationOptions
 
  - 我们的renderGridItem需要执行props.navigation.navigate函数，但是目前的renderGridItem无法使用到props，因此我们把renderGridItem搬移到CategoriesScreen里。此外，我们也在renderGridItem上添加一个TouchableOpacity，给他一个类似Button的功能。
 
@@ -299,3 +299,36 @@ CategoriesScreen.navigationOptions = {
 
  - 结果：
 <img src="./img/navigation_options.png" height="300px"/>
+
+
+15. screens之间传达params
+ - 在CategoriesScreen，当我们选择一个category，我们想把这个Category的id传送到下一个screen（CategoryMealScreen)
+```js
+<TouchableOpacity style={styles.gridItem} onPress={() => {
+  props.navigation.navigate(
+    {
+      routeName: 'CategoryMeal', 
+      params: {
+        categoryId: itemData.item.id
+      }
+    }
+  );
+}}>
+```
+
+ - 在CategoryMealScreen，我们可以从props获取categoryId，则透过CATEGORIES获取category title并显示。
+```js
+import {CATEGORIES} from '../data/dummy-data';
+
+const CategoryMealScreen = props => {
+const catId = props.navigation.getParam('categoryId');
+const selectedCategory = CATEGORIES.find(cat => cat.id == catId);
+...
+<Text>{selectedCategory.title}</Text>
+```
+
+ - 结果：
+<img src="./img/passing_catId.png" height="300px"/>
+
+
+
